@@ -3,18 +3,18 @@ services:
   - docker
 
 before_install:
-  - docker build -t serkan/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t 12122323/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  -docker run serkan/react-test npm test -- --coverage
+  - docker run 12122323/react-test npm test -- --coverage
 
 after_success:
- - docker build -t serkan/multi-client ./client
- - docker build -t serkan/multi-nginx ./nginx
- - docker build -t serkan/multi-server ./server
- - docker build -t serkan/multi-worker ./worker
+ - docker build -t 12122323/multi-client ./client
+ - docker build -t 12122323/multi-nginx ./nginx
+ - docker build -t 12122323/multi-server ./server
+ - docker build -t 12122323/multi-worker ./worker
  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
- - docker push serkan/multi-client
- - docker push serkan/multi-nginx
- - docker push serkan/multi-server 
- - docker push serkan/multi-worker
+ - docker push 12122323/multi-client
+ - docker push 12122323/multi-nginx
+ - docker push 12122323/multi-server 
+ - docker push 12122323/multi-worker
