@@ -1,0 +1,20 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t serkan/react-test -f ./client/Dockerfile ./client
+
+script:
+  -docker run serkan/react-test npm test -- --coverage
+
+after_success:
+ - docker build -t serkan/multi-client ./client
+ - docker build -t serkan/multi-nginx ./nginx
+ - docker build -t serkan/multi-server ./server
+ - docker build -t serkan/multi-worker ./worker
+ - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+ - docker push serkan/multi-client
+ - docker push serkan/multi-nginx
+ - docker push serkan/multi-server 
+ - docker push serkan/multi-worker
