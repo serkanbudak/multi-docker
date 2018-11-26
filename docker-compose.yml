@@ -33,14 +33,6 @@ services:
     volumes: 
       - /app/node_modules
       - ./client:/app
-    environment:  
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - PGUSER=postgres
-      - PGHOST=postgres
-      - PGDATABASE=postgres
-      - PGPASSWORD=postgres_password
-      - PGPORT=5432
   worker:
     build:
       dockerfile: Dockerfile.dev
@@ -51,9 +43,4 @@ services:
     environment:  
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - PGUSER=postgres
-      - PGHOST=postgres
-      - PGDATABASE=postgres
-      - PGPASSWORD=postgres_password
-      - PGPORT=5432
  
