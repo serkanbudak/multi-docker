@@ -8,6 +8,7 @@ before_install:
 script:
   - docker run 12122323/react-test npm test -- --coverage
 
+/*
 after_success:
  - docker build -t 12122323/multi-client ./client
  - docker build -t 12122323/multi-nginx ./nginx
@@ -18,6 +19,7 @@ after_success:
  - docker push 12122323/multi-nginx
  - docker push 12122323/multi-server 
  - docker push 12122323/multi-worker
+*/
 
 deploy:
   provider: elasticbeanstalk
@@ -28,6 +30,6 @@ deploy:
   bucket_path: "docker"
   on:
     branch: master
-  access_key_id:  $AWS_ACCESS__KEY
+  access_key_id:  $AWS_ACCESS_KEY
   secret_access_key:
     secure: "$AWS_SECRET_KEY"
